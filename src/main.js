@@ -6,6 +6,8 @@ import store from './store'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import '@/assets/css/sb-admin-2.css'
+
 import io from 'socket.io-client'
 import { QEWD, VueQEWD } from 'vue-qewd'
 
