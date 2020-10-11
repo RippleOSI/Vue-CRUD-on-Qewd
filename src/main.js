@@ -9,18 +9,17 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import io from 'socket.io-client'
 import { QEWD, VueQEWD } from 'vue-qewd'
 
-Vue.config.productionTip = false
-
 // import both the QEWD class and VueQEWD plugin
 // import axios (optional, in case you need to use ajax mode)
-import axios from 'axios'
+
+Vue.config.productionTip = false
 
 // instantiate QEWD with your parameters
 var qewd = QEWD({
   application: 'pt-wc-q', // application name
   log: true,
   url: 'http://localhost:8090', // adjust this to your local environment
-  io, // use WebSocket communication
+  io // use WebSocket communication
   // uncomment the lines below to use axios ajax calls instead of using WebSockets (and remove io parameter)
   // see also part 14 of QEWD training course from page 15 at
   // https://www.slideshare.net/robtweed/ewd-3-training-course-part-14-using-ajax-for-ewdxpress-messages
