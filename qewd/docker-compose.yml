@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  qewd:
+    image: rtweed/qewd-server
+    container_name: 'QEWD-Server'
+    ports:
+      - '8090:8080'
+    volumes:
+      - ./mapped:/opt/qewd/mapped
+      - ./yottadb:/root/.yottadb/r1.28_x86_64/g
