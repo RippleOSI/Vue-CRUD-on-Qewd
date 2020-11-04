@@ -6,10 +6,12 @@
 </template>
 
 <script>
-// @ is an alias to /src
+// @ is vaan alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
+  watch: {
+  },
   name: 'Home',
   components: {
     HelloWorld
