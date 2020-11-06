@@ -47,7 +47,12 @@
           </div>
           <div class="group" role="group">
             <a href="#">Forgot password?</a>
-            <b-button variant="primary" align="right" class="float-right rounded-pill login-page-block__login-button">Login</b-button>
+            <b-button
+              variant="primary"
+              align="right"
+              class="float-right rounded-pill login-page-block__login-button"
+              @click="login()"
+            >Login</b-button>
           </div>
         </b-card>
       </div>
@@ -56,6 +61,9 @@
 </template>
 
 <script>
+
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Login',
 
@@ -63,6 +71,31 @@ export default {
     return {
       email: '',
       password: ''
+    }
+  },
+  methods: {
+
+    ...mapActions('user', {
+      putUserObject: 'putUserObject'
+    }),
+
+    login () {
+      const messageObj = {
+        type: 'login',
+        params: {
+          username: this.email,
+          password: this.password
+        }
+      }
+      this.$qewd.send(messageObj, (reply) => {
+        if (reply.message.ok) {
+          this.$bvToast.toast('You successful logged in.')
+          this.putUserObject(reply.message.response)
+        } else {
+          this.$bvToast.toast(reply.message.error)
+        }
+        console.log(reply)
+      })
     }
   },
   computed: {
