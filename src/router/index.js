@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import LoginPage from '../views/LoginPage'
+import LoginPage from '@/views/LoginPage'
 import DashboardPage from '@/views/DashboardPage'
+import TablePage from '@/views/TablePage'
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,6 +23,11 @@ const routes = [
         }
       ]
     }
+  },
+  {
+    path: '/table/:view',
+    name: 'TablePage',
+    component: TablePage
   },
   {
     path: '/about',
