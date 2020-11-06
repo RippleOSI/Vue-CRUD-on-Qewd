@@ -13,7 +13,15 @@ const routes = [
   {
     path: '/dashboard',
     name: 'DashboardPage',
-    component: DashboardPage
+    component: DashboardPage,
+    meta: {
+      breacrumb: [
+        {
+          name: 'Dashboard',
+          link: '/'
+        }
+      ]
+    }
   },
   {
     path: '/about',

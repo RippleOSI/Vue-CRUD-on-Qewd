@@ -36,8 +36,11 @@
 
       </b-col>
       <b-col class="dashboard-content">
+        <b-breadcrumb :items="items"></b-breadcrumb>
+        <div class="dashboard-default-slot">
+          <slot name="default"></slot>
+        </div>
         <!-- Column with content -->
-        <slot name="default"></slot>
       </b-col>
     </b-row>
   </div>
@@ -45,7 +48,28 @@
 
 <script>
 export default {
-  name: 'Dashboard'
+  name: 'Dashboard',
+  data () {
+    return {
+      items: [
+        {
+          text: 'Admin',
+          href: '#'
+        },
+        {
+          text: 'Manage',
+          href: '#'
+        },
+        {
+          text: 'Library',
+          active: true
+        }
+      ]
+    }
+  },
+  watch: {
+
+  }
 }
 </script>
 
@@ -68,7 +92,9 @@ export default {
     &-area{
       flex: 1;
     }
-
+    &-content{
+      padding: 0;
+    }
     &-sidebar-link{
       padding-top: 10px;
       padding-bottom: 10px;
@@ -76,7 +102,9 @@ export default {
       display: block;
       color: black;
     }
-
+    &-default-slot{
+      padding-left: 10px;
+    }
     &-sidebar-link:hover{
       text-decoration: none;
       color: #ff5d00;
