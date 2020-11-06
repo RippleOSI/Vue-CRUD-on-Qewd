@@ -1,13 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '../views/Login'
+import LoginPage from '../views/LoginPage'
+import DashboardPage from '@/views/DashboardPage'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Login',
-    component: Login
+    name: 'LoginPage',
+    component: LoginPage
+  },
+  {
+    path: '/dashboard',
+    name: 'DashboardPage',
+    component: DashboardPage
   },
   {
     path: '/about',
