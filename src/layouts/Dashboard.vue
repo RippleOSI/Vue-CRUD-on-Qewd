@@ -29,8 +29,13 @@
     <b-row class="dashboard-area">
       <b-col class="dashboard-sidebar" lg="2" md="3" >
         <div class="">
-          <router-link class="dashboard-sidebar-link" to="/"><b-icon icon="person-circle"/> Test</router-link>
-          <router-link class="dashboard-sidebar-link" to="/"><b-icon icon="person-circle"/> Test</router-link>
+          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Medications</router-link>
+          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Events</router-link>
+          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Patients</router-link>
+          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Users</router-link>
+          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Vaccinations</router-link>
+          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Vitals</router-link>
+          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Contacts</router-link>
 
         </div>
 
@@ -92,8 +97,13 @@ export default {
     &-area{
       flex: 1;
     }
+    &-menu-icon{
+      margin-right: 10px;
+    }
     &-content{
       padding: 0;
+      background: url(/img/pulsetile/gray_polygonal4_white.jpg);
+      background-size: cover;
     }
     &-sidebar-link{
       padding-top: 10px;
