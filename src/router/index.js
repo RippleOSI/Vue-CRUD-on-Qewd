@@ -16,7 +16,7 @@ const routes = [
     name: 'DashboardPage',
     component: DashboardPage,
     meta: {
-      breacrumb: [
+      breadcrumb: [
         {
           name: 'Dashboard',
           link: '/'
@@ -27,7 +27,12 @@ const routes = [
   {
     path: '/table/:view',
     name: 'TablePage',
-    component: TablePage
+    component: TablePage,
+    meta: {
+      breadcrumb (params) {
+
+      }
+    }
   },
   {
     path: '/about',

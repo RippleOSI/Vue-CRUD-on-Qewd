@@ -31,15 +31,13 @@ export default {
     },
 
     dataLoad () {
-      this.$nextTick(() => {
-        this.$qewd.send({
-          type: this.pageSchema.summary.qewd.getSummary,
-          params: {
-            properties: this.pageSchema.summary.data_properties
-          }
-        }, (reply) => {
-          console.log(reply)
-        })
+      this.$qewd.send({
+        type: this.pageSchema.summary.qewd.getSummary,
+        params: {
+          properties: this.pageSchema.summary.data_properties
+        }
+      }, (reply) => {
+        console.log(reply)
       })
     }
 

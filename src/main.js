@@ -22,7 +22,8 @@ var qewd = QEWD({
   log: true,
   url: 'http://localhost:8090', // adjust this to your local environment
   io, // use WebSocket communication
-  jwt: true
+  mode: 'development',
+  cookieName: 'ewdSession'
 })
 
 // let Vue know you want to use the plugin

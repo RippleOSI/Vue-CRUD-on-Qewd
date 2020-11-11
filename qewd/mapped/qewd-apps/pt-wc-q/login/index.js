@@ -47,14 +47,12 @@ module.exports = function (messageObj, session, send, finished) {
 
     result = checkUserOnList(users, request)
   } while (false)
+
   if (!result) {
     return finished({ error: 'Invalid login attempt' })
   }
 
-  var jwt = this.jwt.handlers.setJWT.call(this, session)
-
   session.authenticated = true
   session.timeout = 3600
-  result.token = session.token
-  finished({ ok: true, response: result, token: jwt })
+  finished({ ok: true, response: result })
 }

@@ -29,19 +29,15 @@
     <b-row class="dashboard-area">
       <b-col class="dashboard-sidebar" lg="2" md="3" >
         <div class="">
-          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Medications</router-link>
-          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Events</router-link>
-          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Patients</router-link>
-          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Users</router-link>
-          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Vaccinations</router-link>
-          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Vitals</router-link>
-          <router-link class="dashboard-sidebar-link" to="/"><b-icon class="dashboard-menu-icon" icon="person-circle"/> Contacts</router-link>
+          <router-link v-for="(item,index) in sidebar_items" :key="index"  class="dashboard-sidebar-link" :to="item.to">
+            <b-icon class="dashboard-menu-icon" icon="person-circle"/> {{item.text}}
+          </router-link>
 
         </div>
 
       </b-col>
       <b-col class="dashboard-content">
-        <b-breadcrumb :items="items"></b-breadcrumb>
+        <b-breadcrumb :items="breadcrumps"></b-breadcrumb>
         <div class="dashboard-default-slot">
           <slot name="default"></slot>
         </div>
@@ -52,28 +48,41 @@
 </template>
 
 <script>
+import CrudRegistry from '@/schema/schema_register'
+
 export default {
   name: 'Dashboard',
   data () {
     return {
-      items: [
-        {
-          text: 'Admin',
-          href: '#'
-        },
-        {
-          text: 'Manage',
-          href: '#'
-        },
-        {
-          text: 'Library',
-          active: true
-        }
-      ]
     }
   },
   watch: {
 
+  },
+  computed: {
+    breadcrumps () {
+      return []
+    },
+    sidebar_items () {
+      const itms = []
+      for (const crudRegistryKey in CrudRegistry) {
+        const crudItm = CrudRegistry[crudRegistryKey]
+        console.log(crudItm)
+
+        itms.push(
+          {
+            text: crudItm.title,
+            to: {
+              name: 'TablePage',
+              params: {
+                view: crudItm.assemblyName
+              }
+            }
+          }
+        )
+      }
+      return itms
+    }
   }
 }
 </script>

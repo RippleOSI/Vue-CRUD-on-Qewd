@@ -62,7 +62,7 @@
 
 import { mapActions } from 'vuex'
 import Login from '@/layouts/Login'
-
+import { result } from 'lodash'
 export default {
   name: 'LoginPage',
   components: { Login },
@@ -71,6 +71,17 @@ export default {
       email: '',
       password: ''
     }
+  },
+  mounted () {
+    this.$qewd.send({
+      type: 'ping',
+      params: {}
+    }, (reply) => {
+      const resp = result(reply, 'message.response', null)
+      if (resp) {
+        this.$router.push({ name: 'DashboardPage' })
+      }
+    })
   },
   methods: {
 
@@ -90,6 +101,7 @@ export default {
         if (reply.message.ok) {
           this.$bvToast.toast('You successful logged in.')
           this.putUserObject(reply.message.response)
+          this.$router.push({ name: 'DashboardPage' })
         } else {
           this.$bvToast.toast(reply.message.error)
         }
