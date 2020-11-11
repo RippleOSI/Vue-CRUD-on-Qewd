@@ -7,9 +7,10 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import '@/assets/css/sb-admin-2.css'
-
+import CrudRegistry from '@/schema/schema_register'
 import io from 'socket.io-client'
 import { QEWD, VueQEWD } from 'vue-qewd'
+import buildQewdVuex from '@/store/qewd_store'
 
 // import both the QEWD class and VueQEWD plugin
 // import axios (optional, in case you need to use ajax mode)
@@ -31,6 +32,11 @@ Vue.use(VueQEWD, { qewd })
 
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
+
+for (const crudRegistryKey in CrudRegistry) {
+  const crudItm = CrudRegistry[crudRegistryKey]
+  store.registerModule(crudItm.name, buildQewdVuex(qewd, crudItm))
+}
 
 new Vue({
   router,
