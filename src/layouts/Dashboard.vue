@@ -67,7 +67,6 @@ export default {
       const itms = []
       for (const crudRegistryKey in CrudRegistry) {
         const crudItm = CrudRegistry[crudRegistryKey]
-        console.log(crudItm)
 
         itms.push(
           {

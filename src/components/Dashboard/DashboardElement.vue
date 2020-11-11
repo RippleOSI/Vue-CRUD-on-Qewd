@@ -22,12 +22,22 @@
 <script>
 export default {
   name: 'DashboardElement',
-
+  computed: {
+    list () {
+      return this.$store.getters(`${this.schema.name}/summary`)
+    }
+  },
+  mounted () {
+    this.$store.dispatch(`${this.schema.name}/fetchData`).then((res) => {
+      console.log(res)
+    })
+  },
   props: {
     schema: {
       type: Object
     }
   }
+
 }
 </script>
 

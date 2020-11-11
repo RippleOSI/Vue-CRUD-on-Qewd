@@ -18,25 +18,26 @@ export default function buildQewdVuex (qewd, schema) {
     actions: {
       async fetchData ({ commit }) {
         return new Promise((resolve, reject) => {
-          this.$qewd.send({
+          qewd.send({
             type: schema.summary.qewd.getSummary,
             params: {
               properties: schema.summary.data_properties
             }
           }, (reply) => {
-            const resp = result(reply, 'message.response', null)
+            const resp = result(reply, 'message.summary', null)
             if (!resp) {
               return reject(reply)
             }
             commit('setSummary', resp)
-            return resolve(resp)
+            resolve(resp)
+            return resp
           })
         })
       },
 
       async fetchDetails ({ commit }, id) {
         return new Promise((resolve, reject) => {
-          this.$qewd.send({
+          qewd.send({
             type: schema.summary.qewd.getDetail,
             params: {
               id: id

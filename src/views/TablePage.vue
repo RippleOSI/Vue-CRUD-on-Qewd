@@ -1,6 +1,9 @@
 <template>
   <dashboard>
-    <b-table>
+    <b-table
+      :fields="pageSchema.headers"
+      :items="list"
+    >
 
     </b-table>
   </dashboard>
@@ -27,20 +30,19 @@ export default {
   methods: {
     refreshSchema () {
       this.pageSchema = CrudRegistry[this.$route.params.view]
-      console.log(this.pageSchema)
     },
 
     dataLoad () {
-      this.$qewd.send({
-        type: this.pageSchema.summary.qewd.getSummary,
-        params: {
-          properties: this.pageSchema.summary.data_properties
-        }
-      }, (reply) => {
-        console.log(reply)
+      this.$store.dispatch(`${this.pageSchema.name}/fetchData`).then((res) => {
+        console.log(res)
       })
     }
 
+  },
+  computed: {
+    list () {
+      return this.$store.getters[`${this.pageSchema.name}/summary`]
+    }
   },
   watch: {
     $route (from, to) {
