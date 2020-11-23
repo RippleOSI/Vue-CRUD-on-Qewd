@@ -11,7 +11,6 @@ import CrudRegistry from '@/schema/schema_register'
 import io from 'socket.io-client'
 import { QEWD, VueQEWD } from 'vue-qewd'
 import buildQewdVuex from '@/store/qewd_store'
-
 // import both the QEWD class and VueQEWD plugin
 // import axios (optional, in case you need to use ajax mode)
 

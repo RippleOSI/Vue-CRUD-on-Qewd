@@ -1,11 +1,11 @@
 <template>
-      <div class="card">
+      <div class="card dashboard-element">
         <div class="card-header">
           <div class="summary-card-item__heading">
             <div class="icon">
-              <b-icon class="fa" :class="`fa-${schema.icon}`">
+              <i class="fa" :class="`fa-${schema.icon}`">
 
-              </b-icon>
+              </i>
             </div>
             <div class="text">
                 {{schema.title}}
@@ -41,6 +41,16 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.dashboard-element {
+  .card-header{
+      text-align: center;
+  }
+  .icon{
+    font-size: 36px;
+  }
+  .text{
+    font-weight: bold;
+  }
+}
 </style>

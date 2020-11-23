@@ -1,4 +1,4 @@
-import { result } from 'lodash'
+import { result, filter } from 'lodash'
 
 export default function buildQewdVuex (qewd, schema) {
   const qewdStore = {
@@ -16,6 +16,24 @@ export default function buildQewdVuex (qewd, schema) {
       setSummary: (state, data) => state.summary = data
     },
     actions: {
+
+      async deleteEntity ({ commit, state }, { id }) {
+        return new Promise(resolve => {
+          qewd.send({
+            type: schema.summary.qewd.delete,
+            params: {
+              id: id
+            }
+          }, (reply) => {
+            console.log(reply)
+            const deleted = filter(state.summary, o => o.id !== id)
+            resolve(deleted)
+            commit('setSummary', deleted)
+            return deleted
+          })
+        })
+      },
+
       async fetchData ({ commit }) {
         return new Promise((resolve, reject) => {
           qewd.send({
