@@ -29,8 +29,11 @@
     <b-row class="dashboard-area">
       <b-col class="dashboard-sidebar" lg="2" md="3" >
         <div class="">
+          <router-link :to="{name: 'DashboardPage'}" class="dashboard-sidebar-link">
+            <i class="fa fa-space-shuttle"></i> Dashboard
+          </router-link>
           <router-link v-for="(item,index) in sidebar_items" :key="index"  class="dashboard-sidebar-link" :to="item.to">
-            <b-icon class="dashboard-menu-icon" icon="person-circle"/> {{item.text}}
+            <i :class="`dashboard-menu-icon fa  fa-${item.icon}`" /> {{item.text}}
           </router-link>
 
         </div>
@@ -71,6 +74,7 @@ export default {
         itms.push(
           {
             text: crudItm.title,
+            icon: crudItm.icon,
             to: {
               name: 'TablePage',
               params: {

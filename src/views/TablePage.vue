@@ -22,6 +22,8 @@
             :filter="filter"
             :per-page="perPage"
             :current-page="currentPage"
+            @row-clicked="setActiveItem"
+
           >
             <template slot="top-row" slot-scope="{ fields }">
               <td v-for="(field,index) in fields" :key="index">
@@ -71,11 +73,20 @@
               header-text-variant="white"
               align="left"
             >
+
               <edit-or-create
+                v-if="state === 'edit'"
                 :item="editObject"
                 :schema="pageSchema"
                 @close-edit="closeInstruments"
                 @save="saveRecord"
+              />
+              <view-record
+                v-else
+                :item="editObject"
+                :schema="pageSchema"
+                @edit-start="state = 'edit'"
+                @close-edit="closeInstruments"
               />
             </b-card>
           </b-card-group>
@@ -101,11 +112,13 @@
 import Dashboard from '@/layouts/Dashboard'
 import CrudRegistry from '@/schema/schema_register'
 import EditOrCreate from '@/components/Tools/EditOrCreate'
+import ViewRecord from '@/components/Tools/ViewRecord'
 
 export default {
 
   name: 'TablePage',
-  components: { EditOrCreate, Dashboard },
+  // eslint-disable-next-line vue/no-unused-components
+  components: { ViewRecord, EditOrCreate, Dashboard },
   data () {
     return {
       pageSchema: {},
@@ -123,7 +136,8 @@ export default {
       perPage: 10,
       resetCalc: 0,
       deleteObject: null,
-      editObject: null
+      editObject: null,
+      state: 'list'
     }
   },
   mounted () {
@@ -160,8 +174,13 @@ export default {
         this.deleteObject = null
       })
     },
+
     closeInstruments () {
       this.editObject = null
+    },
+    setActiveItem (item) {
+      this.editObject = item
+      this.state = 'view'
     },
     saveRecord ({ data, schema }) {
       if (!data.id || data.id.length < 1) {
@@ -270,7 +289,7 @@ export default {
 
   .card-header{
     align-items: center;
-
+    display: flex;
     h5{
       margin-bottom: 0;
     }
