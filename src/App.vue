@@ -17,7 +17,7 @@ export default {
         }
       } else {
         if (msgType === 'socketDisconnected') {
-          self.$router.push({ name: 'LoginPage' })
+          self.$router.push({ name: 'LoginPage' }).catch(() => {})
         }
       }
     })

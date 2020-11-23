@@ -35,8 +35,34 @@ export default {
     }
   },
   data () {
+    if (this.item.id) {
+      this.$qewd.send({
+        type: this.schema.summary.qewd.getDetail,
+        params: {
+          id: this.item.id
+        }
+      }, (el) => {
+        console.log(el)
+        this.fields = el.message.record
+      })
+    }
     return {
       fields: this.item
+    }
+  },
+  watch: {
+    item (from, to) {
+      console.log(to)
+      if (from.id) {
+        this.$qewd.send({
+          type: this.schema.summary.qewd.getDetail,
+          params: {
+            id: from.id
+          }
+        }, (el) => {
+          this.fields = el.message.record
+        })
+      }
     }
   },
   methods: {

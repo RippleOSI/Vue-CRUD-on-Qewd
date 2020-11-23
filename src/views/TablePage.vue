@@ -1,8 +1,16 @@
 <template>
   <dashboard>
     <div class="card table-page">
-      <h5 class="card-header"><i :class="`fa fa-${icon}`"/> {{ title }}</h5>
-
+      <div class="card-header">
+        <h5>
+          <i :class="`fa fa-${icon}`"/> {{ title }}
+        </h5>
+        <div class="button-area">
+          <b-button @click="editObject={}">
+            <i class="fa fa-plus"></i>
+          </b-button>
+        </div>
+      </div>
       <div class="card-body">
         <div class="content-field">
           <b-table
@@ -63,7 +71,12 @@
               header-text-variant="white"
               align="left"
             >
-               <edit-or-create :item="editObject" :schema="pageSchema"/>
+              <edit-or-create
+                :item="editObject"
+                :schema="pageSchema"
+                @close-edit="closeInstruments"
+                @save="saveRecord"
+              />
             </b-card>
           </b-card-group>
         </div>
@@ -146,6 +159,32 @@ export default {
         }).then((el) => {
         this.deleteObject = null
       })
+    },
+    closeInstruments () {
+      this.editObject = null
+    },
+    saveRecord ({ data, schema }) {
+      if (!data.id || data.id.length < 1) {
+        data.id = Math.floor(Date.now() / 1000)
+      }
+      this.$qewd.send(
+        {
+          type: schema.update.qewd.save,
+          params: data
+        }
+        , (el) => {
+          this.$bvToast.toast(
+            'Record saved!',
+            {
+              title: 'Success'
+            })
+          console.log(el)
+          this.editObject = null
+
+          this.$store.dispatch(`${this.pageSchema.name}/fetchData`).then((res) => {
+            console.log(res)
+          })
+        })
     }
   },
   computed: {
@@ -199,7 +238,7 @@ export default {
     },
     filtered () {
       if (!this.list ||
-      !this.filters) {
+        !this.filters) {
         return []
       }
       const filtered = this.list.filter(item => {
@@ -221,11 +260,21 @@ export default {
 
 <style lang="scss" scoped>
 .table-page {
+  .button-area{
+    margin-left: auto;
+  }
   .card-body {
     display: flex;
     flex-direction: row;
   }
 
+  .card-header{
+    align-items: center;
+
+    h5{
+      margin-bottom: 0;
+    }
+  }
   .content-field {
     flex-grow: 1;
   }

@@ -79,7 +79,7 @@ export default {
     }, (reply) => {
       const resp = result(reply, 'message.response', null)
       if (resp) {
-        this.$router.push({ name: 'DashboardPage' })
+        this.$router.push({ name: 'DashboardPage' }).catch(() => {})
       }
     })
   },
@@ -101,7 +101,7 @@ export default {
         if (reply.message.ok) {
           this.$bvToast.toast('You successful logged in.')
           this.putUserObject(reply.message.response)
-          this.$router.push({ name: 'DashboardPage' })
+          this.$router.push({ name: 'DashboardPage' }).catch(() => {})
         } else {
           this.$bvToast.toast(reply.message.error)
         }
