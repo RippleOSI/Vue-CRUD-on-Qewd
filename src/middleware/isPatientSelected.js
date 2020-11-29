@@ -1,10 +1,7 @@
 export default function isPatientSelected ({ next, store }) {
-  if (store.getters.patient.activePatient) {
+  if (store.getters['patient/activePatient'].id === 0) {
     return next({
-      name: 'TablePage',
-      params: {
-        view: 'patients'
-      }
+      name: 'Patients'
     })
   }
 

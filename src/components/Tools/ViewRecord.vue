@@ -1,5 +1,6 @@
 <template>
   <div class="view-record">
+    <slot name="before"></slot>
     <div style="padding-bottom: 10px" v-for="(item,index) in schema.detail.fields" :key="index">
       <h5 :for="item.data_property">{{ item.label }}</h5>
       <div v-html="fields[item.data_property]"/>
@@ -14,6 +15,9 @@
         Close
       </b-button>
     </div>
+    <slot name="after">
+
+    </slot>
   </div>
 </template>
 

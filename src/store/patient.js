@@ -1,7 +1,7 @@
 const patient = {
   namespaced: true,
   state: () => ({
-    selected_patient: { id: 1 }
+    selected_patient: { id: 0 }
   }),
 
   getters: {

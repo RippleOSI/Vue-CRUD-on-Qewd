@@ -14,7 +14,6 @@ import buildQewdVuex from '@/store/qewd_store'
 // import both the QEWD class and VueQEWD plugin
 // import axios (optional, in case you need to use ajax mode)
 
-/*
 router.beforeEach((to, from, next) => {
   if (!to.meta.middleware) {
     return next()
@@ -30,7 +29,6 @@ router.beforeEach((to, from, next) => {
     ...context
   })
 })
-*/
 
 Vue.config.productionTip = false
 

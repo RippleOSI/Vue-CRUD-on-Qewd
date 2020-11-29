@@ -101,7 +101,7 @@ export default {
         if (reply.message.ok) {
           this.$bvToast.toast('You successful logged in.')
           this.putUserObject(reply.message.response)
-          this.$router.push({ name: 'DashboardPage' }).catch(() => {})
+          this.$router.push({ name: 'Patients' }).catch(() => {})
         } else {
           this.$bvToast.toast(reply.message.error)
         }

@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import LoginPage from '@/views/LoginPage'
 import DashboardPage from '@/views/DashboardPage'
 import TablePage from '@/views/TablePage'
+import Patients from '@/views/Patients'
+import isPatientSelected from '@/middleware/isPatientSelected'
 
 Vue.use(VueRouter)
 
@@ -22,8 +24,16 @@ const routes = [
           name: 'Dashboard',
           link: '/'
         }
+      ],
+      middleware: [
+        isPatientSelected
       ]
     }
+  },
+  {
+    path: '/patients',
+    name: 'Patients',
+    component: Patients
   },
   {
     path: '/table/:view',
@@ -31,11 +41,8 @@ const routes = [
     component: TablePage,
     meta: {
       middleware: [
-
-      ],
-      breadcrumb (params) {
-
-      }
+        isPatientSelected
+      ]
     }
   },
   {
