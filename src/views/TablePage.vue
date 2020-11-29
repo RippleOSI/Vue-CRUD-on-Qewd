@@ -186,6 +186,9 @@ export default {
       if (!data.id || data.id.length < 1) {
         data.id = Math.floor(Date.now() / 1000)
       }
+      if (schema.patientIdDepends) {
+        data.patient_id = this.$store.getters['patient/activePatient'].id
+      }
       this.$qewd.send(
         {
           type: schema.update.qewd.save,

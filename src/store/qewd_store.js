@@ -8,7 +8,16 @@ export default function buildQewdVuex (qewd, schema) {
     }),
 
     getters: {
-      summary: (state) => state.summary
+      summary: (state, getters, rootState, rootGetters) => {
+        let result = state.summary
+
+        if (schema.patientIdDepends) {
+          const patient = rootGetters['patient/activePatient']
+            ? rootGetters['patient/activePatient'] : { id: 1 }
+          result = filter(result, { patient_id: patient.id })
+        }
+        return result
+      }
     },
 
     mutations: {
@@ -44,10 +53,17 @@ export default function buildQewdVuex (qewd, schema) {
 
       async fetchData ({ commit }) {
         return new Promise((resolve, reject) => {
+          let properties = schema.summary.data_properties
+          if (schema.patientIdDepends) {
+            properties = [
+              ...properties,
+              'patient_id'
+            ]
+          }
           qewd.send({
             type: schema.summary.qewd.getSummary,
             params: {
-              properties: schema.summary.data_properties
+              properties: properties
             }
           }, (reply) => {
             const resp = result(reply, 'message.summary', null)

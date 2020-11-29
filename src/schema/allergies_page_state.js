@@ -3,7 +3,7 @@ const allergiesPageState = {
   name: 'allergies',
   title: 'Allergies',
   icon: 'allergies',
-
+  patientIdDepends: true,
   summary: {
     title: 'Current Allergies',
     titleColour: 'info',

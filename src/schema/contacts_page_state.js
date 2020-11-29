@@ -3,6 +3,7 @@ const contactsPageState = {
   name: 'contacts',
   title: 'Contacts',
   icon: 'phone',
+  patientIdDepends: true,
   summary: {
     title: 'Contacts:',
     titleColour: 'info',

@@ -14,8 +14,15 @@
 
 <script>
 import Dashboard from '@/layouts/Dashboard'
-import CrudRegistry from '@/schema/schema_register'
 import DashboardElement from '@/components/Dashboard/DashboardElement'
+import { allergiesPageState } from '@/schema/allergies_page_state'
+import { contactsPageState } from '@/schema/contacts_page_state'
+import { diagnosisPageState } from '@/schema/diagnosis_page_state'
+import { eventsPageState } from '@/schema/events_page_state'
+import { medicationsPageState } from '@/schema/medications_page_state'
+
+import { vaccinationsPageState } from '@/schema/vaccinations_page_state'
+import { vitalsPageState } from '@/schema/vitals_page_state'
 
 export default {
   name: 'DashboardPage',
@@ -23,7 +30,13 @@ export default {
   data: function () {
     return {
       dashboardComponents: {
-        ...CrudRegistry
+        allergiesPageState,
+        contactsPageState,
+        diagnosisPageState,
+        eventsPageState,
+        medicationsPageState,
+        vaccinationsPageState,
+        vitalsPageState
       }
     }
   }

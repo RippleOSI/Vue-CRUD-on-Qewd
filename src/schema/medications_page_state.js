@@ -3,6 +3,7 @@ const medicationsPageState = {
   name: 'medications',
   title: 'Medications',
   icon: 'prescription-bottle-alt',
+  patientIdDepends: true,
   summary: {
     title: 'Current Meds',
     titleColour: 'info',

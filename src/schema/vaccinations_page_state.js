@@ -3,6 +3,7 @@ const vaccinationsPageState = {
   name: 'vaccinations',
   title: 'Vaccinations',
   icon: 'syringe',
+  patientIdDepends: true,
 
   summary: {
     title: 'Current Vaccinations',

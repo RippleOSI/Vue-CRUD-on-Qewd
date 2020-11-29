@@ -3,6 +3,7 @@ const vitalsPageState = {
   name: 'vitals',
   title: 'Vitals Signs',
   icon: 'notes-medical',
+  patientIdDepends: true,
   summary: {
     title: 'Vitals Signs',
     titleColour: 'info',

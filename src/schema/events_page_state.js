@@ -3,7 +3,7 @@ const eventsPageState = {
   name: 'events',
   title: 'Events',
   icon: 'calendar-alt',
-
+  patientIdDepends: true,
   summary: {
     title: 'Current Events',
     titleColour: 'info',

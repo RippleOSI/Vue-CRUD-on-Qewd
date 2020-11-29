@@ -3,6 +3,7 @@ const diagnosisPageState = {
   name: 'diagnosis',
   title: 'Problems/Diagnosis',
   icon: 'clipboard-list',
+  patientIdDepends: true,
   summary: {
     title: 'Current Problems/Diagnoses',
     titleColour: 'info',

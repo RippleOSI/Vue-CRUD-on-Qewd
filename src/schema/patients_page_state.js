@@ -8,6 +8,7 @@ const patientsPageState = {
   menu: {
     title: 'Close Patient'
   },
+
   summary: {
     title: 'Patients',
     titleColour: 'info',
