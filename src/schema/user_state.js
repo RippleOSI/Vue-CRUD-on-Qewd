@@ -2,6 +2,7 @@ const userPageState = {
   assemblyName: 'users',
   name: 'users',
   title: 'Users',
+  icon: 'users',
   summary: {
     title: 'Users',
     titleColour: 'info',

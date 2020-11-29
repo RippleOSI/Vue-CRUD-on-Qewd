@@ -14,6 +14,22 @@ import buildQewdVuex from '@/store/qewd_store'
 // import both the QEWD class and VueQEWD plugin
 // import axios (optional, in case you need to use ajax mode)
 
+router.beforeEach((to, from, next) => {
+  if (!to.meta.middleware) {
+    return next()
+  }
+  const middleware = to.meta.middleware
+  const context = {
+    to,
+    from,
+    next,
+    store
+  }
+  return middleware[0]({
+    ...context
+  })
+})
+
 Vue.config.productionTip = false
 
 // instantiate QEWD with your parameters

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import LoginPage from '@/views/LoginPage'
 import DashboardPage from '@/views/DashboardPage'
 import TablePage from '@/views/TablePage'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,6 +30,9 @@ const routes = [
     name: 'TablePage',
     component: TablePage,
     meta: {
+      middleware: [
+
+      ],
       breadcrumb (params) {
 
       }
