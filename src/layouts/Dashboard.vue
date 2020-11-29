@@ -21,7 +21,7 @@
               <b-icon icon="person-circle"></b-icon>
             </template>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <b-dropdown-item @click.prevent="logout" href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -51,7 +51,13 @@
 </template>
 
 <script>
-import CrudRegistry from '@/schema/schema_register'
+import { allergiesPageState } from '@/schema/allergies_page_state'
+import { contactsPageState } from '@/schema/contacts_page_state'
+import { diagnosisPageState } from '@/schema/diagnosis_page_state'
+import { eventsPageState } from '@/schema/events_page_state'
+import { medicationsPageState } from '@/schema/medications_page_state'
+import { vaccinationsPageState } from '@/schema/vaccinations_page_state'
+import { vitalsPageState } from '@/schema/vitals_page_state'
 
 export default {
   name: 'Dashboard',
@@ -62,14 +68,25 @@ export default {
   watch: {
 
   },
+  methods: {
+    logout () {}
+  },
   computed: {
     breadcrumps () {
       return []
     },
     sidebar_items () {
-      const itms = []
-      for (const crudRegistryKey in CrudRegistry) {
-        const crudItm = CrudRegistry[crudRegistryKey]
+      const itms = [
+        allergiesPageState,
+        contactsPageState,
+        diagnosisPageState,
+        eventsPageState,
+        medicationsPageState,
+        vaccinationsPageState,
+        vitalsPageState
+      ]
+      for (const crudRegistryKey in itms) {
+        const crudItm = itms[crudRegistryKey]
 
         itms.push(
           {

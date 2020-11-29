@@ -13,7 +13,7 @@ import { QEWD, VueQEWD } from 'vue-qewd'
 import buildQewdVuex from '@/store/qewd_store'
 // import both the QEWD class and VueQEWD plugin
 // import axios (optional, in case you need to use ajax mode)
-
+import VueCookies from 'vue-cookies'
 router.beforeEach((to, from, next) => {
   if (!to.meta.middleware) {
     return next()
@@ -44,6 +44,7 @@ var qewd = QEWD({
 
 // let Vue know you want to use the plugin
 Vue.use(VueQEWD, { qewd })
+Vue.use(VueCookies)
 
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)

@@ -9,7 +9,8 @@ export default {
   created: function () {
     var self = this
     // monitor when QEWD is ready
-    this.$qewd.vRegistrationCallback(function (registered, msgType) {
+    console.log(this.$qewd)
+    this.$qewd.vRegistrationCallback((registered, msgType) => {
       self.qewdReady = registered
       if (registered) {
         if (msgType === 'ewd-registered') {
@@ -18,9 +19,15 @@ export default {
       } else {
         if (msgType === 'socketDisconnected') {
           self.$router.push({ name: 'LoginPage' }).catch(() => {})
+        } else {
+          console.log('wrong')
         }
       }
+      console.log(msgType)
+
+      self.$store.dispatch('init')
     })
+
     // start the QEWD WebSockets connection ...
     this.$qewd.vueStart()
   },

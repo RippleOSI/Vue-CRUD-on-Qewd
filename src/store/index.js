@@ -10,6 +10,9 @@ export default new Vuex.Store({
   mutations: {
   },
   actions: {
+    init ({ store }) {
+      console.log(store)
+    }
   },
   modules: {
     user: user,
