@@ -1,4 +1,4 @@
-import { result, filter } from 'lodash'
+import { result, filter, find } from 'lodash'
 
 export default function buildQewdVuex (qewd, schema) {
   const qewdStore = {
@@ -16,6 +16,14 @@ export default function buildQewdVuex (qewd, schema) {
       setSummary: (state, data) => state.summary = data
     },
     actions: {
+
+      findByProp ({ state }, { findParameters }) {
+        return find(state.summary, findParameters)
+      },
+
+      filterByProps ({ state }, { filterParameters }) {
+        return filter(state.summary, filterParameters)
+      },
 
       async deleteEntity ({ commit, state }, { id }) {
         return new Promise(resolve => {

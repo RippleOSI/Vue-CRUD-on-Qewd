@@ -10,8 +10,8 @@ const eventsPageState = {
     btnIcon: 'user-plus',
     btnColour: 'success',
     btnTooltip: 'Add a New Event',
-    headers: ['Name', 'Date'],
-    data_properties: ['name', 'date'],
+    headers: ['id', 'Name', 'Date'],
+    data_properties: ['id', 'name', 'date'],
     qewd: {
       getSummary: 'getEvents',
       getDetail: 'getEventInfo',
