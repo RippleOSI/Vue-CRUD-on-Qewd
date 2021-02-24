@@ -1,14 +1,49 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import LoginPage from '@/views/LoginPage'
+import DashboardPage from '@/views/DashboardPage'
+import TablePage from '@/views/TablePage'
+import Patients from '@/views/Patients'
+import isPatientSelected from '@/middleware/isPatientSelected'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'LoginPage',
+    component: LoginPage
+  },
+  {
+    path: '/dashboard',
+    name: 'DashboardPage',
+    component: DashboardPage,
+    meta: {
+      breadcrumb: [
+        {
+          name: 'Dashboard',
+          link: '/'
+        }
+      ],
+      middleware: [
+        isPatientSelected
+      ]
+    }
+  },
+  {
+    path: '/patients',
+    name: 'Patients',
+    component: Patients
+  },
+  {
+    path: '/table/:view',
+    name: 'TablePage',
+    component: TablePage,
+    meta: {
+      middleware: [
+        isPatientSelected
+      ]
+    }
   },
   {
     path: '/about',
